@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {useLocation, Route, Switch, Redirect} from 'react-router-dom';
 import CustomNavBar from "components/CustomNavBar";
 import routes from "routes"
-import axios from "axios";
 import Intro from "./cards/Intro";
 
-
-function Main(props){
+function Main(props) {
     const location = useLocation()
     const [userId, setUserId] = React.useState(props.userId)
     const getRoutes = (routes) => {
         return routes.map((prop, key) => {
-            if(location.pathname !== '/') {
+            if (location.pathname !== '/') {
                 return (
                     <Route
                         path={prop.path}
@@ -23,7 +21,7 @@ function Main(props){
                 return (
                     <Route
                         path="/"
-                        render={(props) => <Intro />}
+                        render={(props) => <Intro/>}
                         key={key}
                     />
                 );
@@ -37,7 +35,7 @@ function Main(props){
 
     return (
         <>
-            <CustomNavBar />
+            <CustomNavBar/>
             <div className="content w-75 mx-auto mt-5">
                 <Switch>
                     {getRoutes(routes)}
@@ -46,4 +44,5 @@ function Main(props){
         </>
     )
 }
+
 export default Main;
