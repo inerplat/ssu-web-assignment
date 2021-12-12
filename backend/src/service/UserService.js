@@ -24,7 +24,7 @@ class UserService {
     }
 
     async search(user) {
-        const result = await this.repository.getUser(user)
+        const result = await this.repository.findUserById(user)
         if (result[0].length === 1) {
             return {
                 status: true,
@@ -40,7 +40,22 @@ class UserService {
         }
 
     }
-
+    async searchEmail(user){
+        const result = await this.repository.findUserByEmail(user)
+        if (result[0].length !== 0) {
+            return {
+                status: true,
+                message: "조회 성공",
+                data: result[0][0]
+            }
+        } else {
+            return {
+                status: false,
+                message: "조회 실패",
+                data: {}
+            }
+        }
+    }
     async validate(user) {
         const result = await this.repository.matchUser(user)
         if (result[0].length === 1) {

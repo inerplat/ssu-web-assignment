@@ -21,12 +21,21 @@ class UserRepository {
         )
     }
 
-    async getUser(user) {
+    async findUserById(user) {
         return this.conn.query(
             `SELECT id, email, username
              FROM ${this.table}
              WHERE id = ?`,
             [user.id]
+        )
+    }
+
+    async findUserByEmail(user) {
+        return this.conn.query(
+            `SELECT id, email, username
+             FROM ${this.table}
+             WHERE email = ?`,
+            [user.email]
         )
     }
 

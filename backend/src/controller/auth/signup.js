@@ -40,4 +40,19 @@ router.get('/signup/duplicate', async (req, res) => {
         res.status(200).json({result: false})
 })
 
+router.get('/signup/duplicate/email', async (req, res) => {
+    const user = new User({
+        id: "",
+        username: "",
+        password: "",
+        email: req.query.email
+    })
+
+    const userService = new UserService('user')
+    if ((await userService.searchEmail(user)).status)
+        res.status(200).json({result: true})
+    else
+        res.status(200).json({result: false})
+})
+
 module.exports = router;

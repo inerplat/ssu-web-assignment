@@ -167,7 +167,28 @@ class Login extends Component {
 
                             <Form.Group className="mb-3" controlId="formEmail">
                                 <Form.Label>이메일</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email"/>
+                                <Form.Control type="email" placeholder="Enter email" onChange={()=>{
+                                    const email = document.getElementById("formEmail").value
+                                    if(email.length > 0){
+                                        axios.get("/api/v1/auth/signup/duplicate/email",{
+                                            params:{
+                                                email:email
+                                            }
+                                        }).then(res=>{
+                                            if(res.data.result){
+                                                document.getElementById("formEmail").style.borderColor = "red"
+                                                document.getElementById("email-comment").innerHTML = "중복된 이메일입니다"
+                                            }else{
+                                                document.getElementById("formEmail").style.borderColor = "green"
+                                                document.getElementById("email-comment").textContent = "사용가능한 이메일입니다"
+                                            }
+                                        }).catch(e=>{
+                                            console.log(e)
+                                        })
+                                    }
+                                }}/>
+                                <Form.Text className="text-muted pl-4" id="email-comment">
+                                </Form.Text>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formName">
