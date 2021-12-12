@@ -4,7 +4,7 @@ module.exports = function (app) {
     app.use(
         '/api',
         createProxyMiddleware({
-            target: 'http://127.0.0.1:10002',
+            target: 'http://127.0.0.1:10003',
             changeOrigin: true,
             ws: false
         })
@@ -12,7 +12,7 @@ module.exports = function (app) {
     app.use(
         '/file',
         createProxyMiddleware({
-            target: 'http://127.0.0.1:10002',
+            target: 'http://127.0.0.1:10003',
             changeOrigin: true,
             ws: false
         })

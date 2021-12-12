@@ -6,7 +6,7 @@ const passportConfig = require('./passport/LoginProd')
 const cors = require('cors');
 
 const app = express()
-const port = 10002
+const port = 10003
 const allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
